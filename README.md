@@ -5,7 +5,7 @@
 **Universal template and design system for product landing pages**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
-[![HTML](https://img.shields.io/badge/HTML-CSS-JS-E34F26?style=for-the-badge)](template/index.html)
+[![No Build](https://img.shields.io/badge/No_Build-Pure_HTML%2FCSS%2FJS-E34F26?style=for-the-badge)](template/index.html)
 
 Pure HTML/CSS/JS template with dark mode, responsive layout, and zero dependencies.
 Built from the [Merge Video](https://github.com/maximosovsky/merge-video) production site.
