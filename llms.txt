@@ -1,0 +1,15 @@
+# Site Design
+
+> Universal template and design system for building product landing pages. Pure HTML/CSS/JS.
+
+## About
+
+Site Design is a template and design principles document for creating consistent, mobile-first landing pages. One universal layout: header, hero, features, footer. Standard brand: Lato + Sora fonts, #33334f / #6078ff / #999 palette. Dark mode with CSS variables. No frameworks, no npm, no build step.
+
+- Author: [Maxim Osovsky](https://www.wikidata.org/wiki/Q107189449)
+- URL: https://github.com/maximosovsky/site-design
+- License: MIT
+
+## Docs
+
+- [Full documentation](llms-full.txt): Complete design principles, architecture, and LLM instructions

@@ -1,0 +1,158 @@
+# Site Design — LLM Instructions for Building Websites
+
+## Overview
+
+This is a design system and template for building product landing pages. When asked to create a new site, follow these rules exactly. Every rule here was derived from real production work on merge-video.com.
+
+- **Author**: Maxim Osovsky (https://www.wikidata.org/wiki/Q107189449)
+- **License**: MIT
+- **Technology**: Pure HTML/CSS/JS. Zero npm dependencies.
+
+## LLM Instructions
+
+When creating or modifying a website for this author, follow all rules below.
+
+### Stack
+- Pure HTML5 + CSS3 + vanilla JS
+- No React, Vue, Tailwind, Bootstrap, or any framework
+- No npm, no build step
+- Single `index.html` + single `style.css`
+- Google Fonts only external dependency
+
+### Fonts
+- Body: `'Lato', sans-serif` (400, 700)
+- Headings: `'Sora', sans-serif` (700)
+- Buttons/system: `-apple-system, BlinkMacSystemFont, sans-serif`
+
+### Color Palette
+| Role | Light | Dark |
+|------|-------|------|
+| Background | `#fff` | `#0f0f1a` |
+| Primary text | `#33334f` | `#e4e4f0` |
+| Secondary text | `#767ead` | `#9a9ec4` |
+| Muted text | `#999` | `#666` |
+| Accent | `#6078ff` | `#818cf8` |
+| Border | `#e2e4ef` | `#2a2a40` |
+| Badge | green icon `#2a9d5c` on `#eef0ff` | green icon `#4ade80` on `#1a1a2e` |
+
+### Dark Mode
+- Use CSS variables in `:root` / `[data-theme="light"]` and `[data-theme="dark"]`
+- Toggle via `data-theme` attribute on `<html>`
+- Respect `prefers-color-scheme` on first load
+- Store preference in `localStorage`
+
+### Header Rules
+1. Logo left: image + text
+2. Nav links right: **plain text**, NOT buttons
+3. Style: `color: #999; font-weight: 400; font-size: 15px`
+4. Hover: `color: var(--text-primary)` — no underline, no borders
+5. External links get SVG arrow icon (NOT Unicode ↗)
+6. Logo text: `clamp(16px, 5vw, 24px)` + `white-space: nowrap`
+7. **NO burger menu** — never hide navigation behind a hamburger icon
+
+### SVG Arrow for External Links
+```html
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="7" y1="17" x2="17" y2="7"/>
+  <polyline points="7 7 17 7 17 17"/>
+</svg>
+```
+
+### Hero Section
+- Desktop: two-column flex (text left, image right)
+- Mobile: text only, image hidden
+- CTA buttons: hidden on desktop (duplicates header), visible on mobile
+- Badge: pill shape, `border-radius: 20px`, hidden on mobile
+- Title: `font-size: 40px` desktop, `26px` mobile
+- Subtitle: max 2 sentences
+
+### Features Section
+- Desktop: 3 cards in a row, centered text, icon on top (emoji 48px)
+- Mobile: vertical stack, horizontal layout (icon left + text right), titles hidden
+- Gap: `30px` desktop, `14px` mobile
+
+### Footer
+- Desktop: text + social icons in a row
+- Mobile: stacked, centered
+- All text `#999`
+- Links: `#999` → accent color on hover
+- Social icons: gray → brand color on hover + `scale(1.2)`
+  - Telegram: `#0088cc`
+  - YouTube: `#FF0000`
+  - Instagram: `#E4405F`
+  - X/Twitter: `#000`
+  - GitHub: `#333`
+  - LinkedIn: `#0A66C2`
+
+### Responsive Rules
+- Single breakpoint: `@media (max-width: 768px)`
+- Use `clamp()` for smooth font scaling
+- Use `flex-shrink: 0` on elements that must not compress (logos, avatars)
+- Never let text wrap in the header — scale font instead
+
+### Animation Rules
+- All transitions: `0.2s ease`
+- Modal entrance: `0.25s ease`, `translateY(30px)` + fade
+- Social icon hover: `0.25s`, `scale(1.2)` + color
+- Theme switch: `0.3s` on background and color
+
+### SEO — Always Include
+- `<title>` — unique, descriptive
+- `<meta name="description">`
+- `<meta property="og:title/description/image/url">`
+- `<meta name="twitter:card/title/description/image">`
+- `<link rel="canonical">`
+- Single `<h1>` per page
+- Semantic HTML5 elements
+
+### Favicon — Always Include
+- 16×16, 32×32, 180×180 (apple-touch-icon)
+- `site.webmanifest`
+
+### Avatar / Auth (if applicable)
+- Google rainbow border on hover: 4-color `box-shadow`
+- `flex-shrink: 0` — never shrinks
+- Dropdown: `#eef0ff` bg, purple shadow
+- Sign Out: `#ff6b6b` → `#ff4444` on hover
+- Tooltip: `#222` bg, hidden when dropdown open
+
+### Modal (if applicable)
+- macOS-style dots: red/yellow/green
+- `border-radius: 20px`, purple-tinted shadow
+- Mobile: slide-up from bottom, `border-radius: 20px 20px 0 0`, `max-height: 90vh`
+- Entrance animation: `translateY(30px)` → `0` + fade
+
+### Inputs (if applicable)
+- Border: `2px solid #e2e4ef` → `#6078ff` on focus
+- `border-radius: 8px`
+- Toggle: gray `#ccc` → `#6366f1` on checked
+
+## File Structure
+
+```
+project/
+├── index.html
+├── style.css
+├── favicon/
+│   ├── favicon-16.png
+│   ├── favicon-32.png
+│   ├── apple-touch-icon.png
+│   └── site.webmanifest
+├── hero.png
+├── llms.txt
+└── llms-full.txt
+```
+
+## Anti-Patterns — NEVER Do This
+
+1. ❌ Never use CSS frameworks (Tailwind, Bootstrap)
+2. ❌ Never use burger/hamburger menus
+3. ❌ Never use Unicode arrows (↗) — always SVG
+4. ❌ Never use `font-weight: bold` on nav links — keep `400`
+5. ❌ Never use external CDN CSS files for layout
+6. ❌ Never hide all mobile navigation — keep CTAs visible in hero
+7. ❌ Never skip favicon or SEO meta tags
+8. ❌ Never hardcode colors — use CSS variables
+9. ❌ Never use placeholders for images — use real assets
+10. ❌ Never let avatars or logos compress — always `flex-shrink: 0`
